@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ESchool 失物招领</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" href="{% static "favicon.ico" %}"/>
+    <link href="../static/css/lose.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="title">
+    <p id="sname"><a href="/index.html/">ESchool 大学生校园交易平台</a> —— 失物招领</p>
+    <p id="name">您好, <a href="/personal_center.html/">{{ username }}</a> ,欢迎光临！ &nbsp;&nbsp;&nbsp; <a
+            href="/tuichu.html/">[退出]</a></p>
+</div>
+
+
+<div id="heads">
+    <img id="head" src="../static/images/shiwuzhaoling.png">
+</div>
+
+<div id="itemss">
+    <a href="/lose_publish.html?type=xunzhaoshizhu">
+        <button>寻找失主</button>
+    </a>
+    <a href="/lose_publish.html?type=xunwuqishi">
+        <button>寻物启事</button>
+    </a>
+    <p id="text">
+        &nbsp;&nbsp;
+        校园中经常发生丢东西不知找谁打听，捡东西不知该交给何人，
+        为帮助广大师生在校园中寻找不慎丢失的物品，
+        减少寻物的烦恼，特此于2018-07-03 18:38时上线 ESchool失物招领平台。
+        <br><br>
+        &nbsp;&nbsp;
+        拾金不昧是中华民族的传统美德，也是大学精神的一部分。
+        在失物招领中，我们见证了失而复得的喜悦，
+        也遇到了许许多多不留名的活雷锋。校园中每天都有好人好事发生，
+        他们都在用自己的爱心和善举浇灌这朵校园文明之花。
+        <br><br>
+        &nbsp;&nbsp;
+        在使用过程中，请勿暴露过于隐私的内容，防止隐私泄露。并真诚感谢您拾金不昧的精神，
+        也希望您在丢失自己随身物品的时候能尽快找回。
+    </p>
+</div>
+
+
+<div id="items">
+
+    {% for item in list %}
+        <div class="item">
+            <div class="title_content">
+                <p class="title_user">{{ item.upname }}</p>
+                {% if item.type == 'xunzhaoshizhu' %}
+                    <p class="title_type">捡</p>
+                {% else %}
+                    <p class="title_type">丢</p>
+                {% endif %}
+                <p class="title_what">{{ item.name }}</p>
+            </div>
+            <hr>
+            <p class="content">{{ item.text }}</p>
+            <div class="img_div">
+                {% if  item.img != 'user1.jpg' %}
+                    <img class="img_img" src="../static/media/{{ item.img }}">
+                {% endif %}
+                <p class="time">{{ item.time }}</p>
+                <p class="time">已有 {{ item.count }} 人认领</p>
+                <a href="#"><p class="time">认领</p></a>
+            </div>
+        </div>
+    {% endfor %}
+
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ESchool 发布中心</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" href="{% static "favicon.ico" %}"/>
+    <link href="../static/css/lose_publish.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="title">
+    <p id="sname"><a href="/index.html/">ESchool 大学生校园交易平台</a> —— 失物招领发布</p>
+    <p id="name"><a href="/personal_center.html/">{{ username }}</a> 思密达,欢迎光临！ &nbsp;&nbsp;&nbsp; <a
+            href="/tuichu.html/">[退出]</a></p>
+</div>
+<div id="f">
+    <div id="xtitle">
+        <p id="tii">ESchool 大学生校园交易平台</p>
+        <p id="tiii">ESchool失物招领 感谢您拾金不昧的精神！</p>
+    </div>
+    <form method="post" action="/lose_up.html/" enctype="multipart/form-data">
+        {% csrf_token %}
+        <span>
+            <p class="t">失物名称：</p><input class="c" maxlength="15" name="name" type="text" required
+                                         placeholder='这件遗失物品叫什么呢？'>
+        </span>
+        <span>
+            <p class="t">联系电话：</p><input maxlength="11" class="c" name="tel" type="number" required
+                                         placeholder='请输入您的手机号码。例如：17666666666'>
+        </span>
+        <span>
+            <p class="t">交易备注：</p><input class="c" maxlength="100" name="remarks" type="text" required
+                                         placeholder='请输入这件遗失物品的简介'>
+        </span>
+        <span>
+            <p class="t">上传图片(只能上传一张不大于10M图片)：</p><input class="c" name="photo" type="file">
+        </span>
+        <span>
+            <p class="t">您的发布类型为：</p>
+            <div id="s">
+                {% if type == 'xunwuqishi' %}
+                    <input class="r" type="radio" name="type" value="xunzhaoshizhu">寻找失主
+                    <input class="r" type="radio" name="type" value="shiwuzhaoling" checked>寻物启事
+                {% else %}
+                    <input class="r" type="radio" name="type" value="xunzhaoshizhu" checked>寻找失主
+                    <input class="r" type="radio" name="type" value="shiwuzhaoling">寻物启事
+                {% endif %}
+            </div>
+        </span><br>
+        <span>
+            <input id="su" type="submit" value="确认发布">
+        </span>
+        <p id="te">©ESchool 王佳伟</p>
+    </form>
+</div>
+</body>
+</html>

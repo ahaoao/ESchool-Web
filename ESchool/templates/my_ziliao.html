@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ESchool 个人资料</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" href="{% static "favicon.ico" %}"/>
+    <link href="../static/css/my_ziliao.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="title">
+    <p id="sname"><a href="/index.html/">ESchool 大学生校园交易平台</a> —— 个人资料</p>
+    <p id="name">亲, <a href="/personal_center.html/">{{ list.username }}</a> ,欢迎光临！ &nbsp;&nbsp;&nbsp; <a
+            href="/tuichu.html/">[退出]</a>
+    </p>
+</div>
+
+
+<div id="big_img">
+    <p class="p1"><span>账号：</span><span>{{ list.username }}</span></p>
+    {% if list.realname != "" %}
+        <p class="p1"><span>姓名：</span><span>{{ list.realname }}</span></p>
+        <p class="p1"><span>学号：</span><span>{{ list.studentnum }}</span></p>
+        <p class="p1"><span>学校：</span><span>山东商业职业技术学院</span></p>
+    {% else %}
+        <p class="p1"><span>实名：</span><span>您尚未<a style="color: #F96F3B" href="/renzheng.html/">实名认证</a></span></p>
+        <p class="p1"><span>学号：</span><span>您尚未实名认证</span></p>
+        <p class="p1"><span>学校：</span><span>您尚未实名认证</span></p>
+    {% endif %}
+
+    <p class="p1"><span>ESchool注册时间：</span><span>{{ list.zhuce_time }}</span></p>
+    <p style="text-align: center;margin: 20px;line-height: 20px"><span style="font-size: 15px;color: #8c8c8c">©2018 ESchool</span>
+    </p>
+</div>
+
+</body>
+</html>

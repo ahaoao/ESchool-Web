@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ESchool 实名认证</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" href="{% static "favicon.ico" %}"/>
+    <link href="../static/css/renzheng.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="title">
+    <p id="sname"><a href="/index.html/">ESchool 大学生校园交易平台</a> —— 实名认证 / 不忘初心 方得始终 初心易得 始终难守</p>
+    <p id="name"><a href="/personal_center.html/">{{ username }}</a> 同志,欢迎光临！</p>
+</div>
+
+<div id="t">
+    <p id="pp">ESchool 大学生校园交易平台 —— 关于 {{ username }} 同志的实名认证</p>
+    <p id="pp2">拒绝实名认证，ESchool将不保护用户合法权益，部分功能将无法使用，请进行实名认证！</p>
+    <p></p>
+</div>
+
+<div id="ll">
+    <form method="post" action="/renzheng.html/">
+        {% csrf_token %}
+        <p id="titles">输入'学号'和'密码'进行学校官网认证</p>
+        <input name="img_name" hidden value="{{ img_name }}">
+        <p id="q">学号：<input required id="in" type="text" name="name" placeholder="请这位同志输入您的学号"></p>
+        <p id="q">密码：<input required id="in" type="password" name="pnamwd" placeholder="请这位同志输入您学校官网密码"></p>
+        <p id="q"><img name="yan" src="../static/yzm/code{{ img_name }}.jpg" width="100px" height="30px"></p>
+        <p id="q">请输入验证码：<input required id="in" type="text" name="yanzhengma" placeholder="请这位同志输入上方验证码"></p>
+        <p id="q"><input type="submit" value="验证"></p>
+        <p id="q"><span id="llll">{{ text }}</span></p>
+    </form>
+</div>
+<p id="ty">参与实名认证的同志，默认同意并遵守<a id="ma" href="/ty.html/">《ESchool 用户实名认证条约》</a></p>
+
+</body>
+</html>

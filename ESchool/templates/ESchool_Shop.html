@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ESchool {{ shop_data.ShopsName }}</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" href="{% static "favicon.ico" %}"/>
+    <link href="../static/css/eschool_shop.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="title">
+    <p id="sname"><a href="/index.html/">ESchool 大学生校园交易平台</a> —— <a href="/Commercial_Street.html/">商业街 </a>{{ shop_data.ShopsName }} 店铺</p>
+    {% if my %}
+        <p id="dian"><a href="/shop_management.html?id={{ shop_data.id }}&name={{ shop_data.ShopsName }}">管理店铺</a></p>
+        <p id="dian"><a href="/shop_center.html?id={{ shop_data.id }}&name={{ shop_data.ShopsName }}">店铺订单</a></p>
+    {% endif %}
+    <p id="name">Hi, <a href="/personal_center.html/">{{ username }}</a> ,欢迎光临！ &nbsp;&nbsp;&nbsp; <a
+            href="/tuichu.html/">[退出]</a>&nbsp;&nbsp;</p>
+</div>
+<div id="shopname">
+    <p id="es">ESchool 大学生校园交易平台——商业街店铺</p>
+    <p id="sn">{{ shop_data.ShopsName }}</p>
+    <p id="jj">{{ shop_data.introduce }}</p>
+    <p id="ti">本店铺注册时间：{{ shop_data.registrationTime }}</p>
+    <p id="ti">本店客服电话：{{ shop_data.phoneNumber }}</p>
+    <p id="ti">本店共完成交易：{{ shop_data.success_num }} 笔</p>
+</div>
+
+<form method="post" action="/go_shopping.html/">
+    {% csrf_token %}
+    <div id="list">
+
+        <input type="hidden" name="shopname" value="{{ shop_data.id }}">
+        {% for item in list %}
+
+            <div id="shangpin">
+                <p id="spname">{{ item.commodityName }}</p>
+                {% if item.commodityNum == 0 %}
+                    <input id="check" type="checkbox" disabled name="ch" value="{{ item.id }}">
+                {% else %}
+                    <input id="check" type="checkbox" name="ch" value="{{ item.id }}">
+                {% endif %}
+                <div id="q"></div>
+                <input type="hidden" name="{{ item.id }}name" value="{{ item.commodityName }}">
+                <input type="hidden" name="{{ item.id }}price" value="{{ item.commodityPrice }}">
+                <p id="spjieshao">{{ item.commodityIntroduce }}</p>
+                <p id="buynum">单价：<span>{{ item.commodityPrice }}</span> 元 &nbsp; &nbsp; &nbsp; &nbsp;
+                    {% if item.commodityNum == 0 %}
+                        购买数量：<input class="buyn" disabled name="{{ item.id }}num" type="number" value="0" min="0">
+                    {% else %}
+                        购买数量：<input class="buyn" disabled name="{{ item.id }}num" type="number" value="0" min="0">
+                    {% endif %}
+                </p>
+                <p id="sy1">补货时间：{{ item.commodityTime }}</p>
+                {% if item.commodityNum == 0 %}
+                    <p id="sy" style="color: #F96F3B;font-weight: 700; font-size: 12px">已售空</p>
+                {% else %}
+                    <p id="sy">剩余：{{ item.commodityNum }} 件</p>
+                {% endif %}
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div id="di">
+        <P class="names">共选中 <span id="sum">0</span> 件商品</P>
+        <P class="names">共花费 <span id="money">0</span> 元</P>
+        <P class="names"><input type="submit" value="确认下单"></P>
+    </div>
+
+</form>
+
+<script src="../static/js/sum.js"></script>
+
+</body>
+</html>

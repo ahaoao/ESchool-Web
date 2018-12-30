@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ESchool 个人中心</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" href="{% static "favicon.ico" %}"/>
+    <link href="../static/css/my_css.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="title">
+    <p id="biaoti"><a href="/index.html/">ESchool</a> —— {{ name }} 个人中心 </p>
+</div>
+<div id="xtitle">
+    <p id="who">{{ name }} 大王,欢迎光临ESchool大学生校园交易平台个人中心。&nbsp;&nbsp;&nbsp; <a href="/tuichu.html/">[退出]</a></p>
+</div>
+<div id="daohang">
+    <a href="/ESchool.html?id=jiaohuanzhongxin"><p class="dtitle">交换中心</p></a>
+    <a href="/ESchool.html?id=ershoushichang"><p class="dtitle">二手市场</p></a>
+    <a href="/ESchool.html?id=dagongdidai"><p class="dtitle">打工地带</p></a>
+    <a href="/Commercial_Street.html"><p class="dtitle">商业街</p></a>
+    <a href="/shudong.html"><p class="dtitle">树洞</p></a>
+    <a href="/my.html/"><p class="dtitle">个人资料</p></a>
+</div>
+<div id="zuo">
+    {% if rname == "" %}
+        <p id="ssm">尚未 <a id="ra" href="/renzheng.html/">实名认证</a></p>
+    {% else %}
+        <p id="sm">{{ rname }} 已实名 R</p>
+    {% endif %}
+    <p class="mr" style="color: red;font-weight: 600">我的发布</p>
+    <a href="/personal_center.html?type=00"><p class="md" style="font-weight: 600;color:indianred;">- 未被抢单</p></a>
+    <a href="/personal_center.html?type=01"><p class="md" style="font-weight: 600;color: indianred;">- 已被抢单</p></a>
+    <p class="mr" style="color: green;font-weight: 600">我的抢单</p>
+    <a href="/personal_center.html?type=10"><p class="md" style="font-weight: 600;color:limegreen;">- 尚未处理</p></a>
+    <a href="/personal_center.html?type=11"><p class="md" style="font-weight: 600;color: limegreen;">- 完成交易</p></a>
+    <p class="mr" style="color: yellow;font-weight: 600">商业店铺</p>
+    <a href="/personal_center.html?type=22"><p class="md" style="font-weight: 600;color: greenyellow;">- 我的购物</p></a>
+    {% if have_shop == 'y' %}
+        <a href="/personal_center.html?type=23"><p class="md" style="font-weight: 600;color: greenyellow;">- 店铺订单</p>
+        </a>
+    {% endif %}
+    <a id="h" href="/index.html/" title="ESchool"><p id="bq" style="color: #8c8c8c">©2018 ESchool</p></a>
+</div>
+<div id="ddd">
+    <p id="tti">{{ type_name }}</p>
+    <p id="tii">
+        {% if type_name == '未被抢单' %}
+            （您发布的信息若未被其他用户抢单则在此处显示）
+        {% elif type_name == '已被抢单' %}
+            （您发布的信息已被其他用户抢单但尚未被您及抢单用户同时标记'完成'在此处显示）
+        {% elif type_name == '尚未处理' %}
+            （您抢到的单尚未被您和发单用户同时标记'完成'则在此处显示）
+        {% elif type_name == '完成交易' %}
+            （您发布的单或您抢到的单已被您和对方用户同时标记'完成'则在此处显示）
+        {% elif type_name == '商业街购物账单' %}
+            （您在商业街店铺购物账单）
+        {% elif type_name == '店铺订单' %}
+            （您的商业街店铺收到的订单）
+        {% endif %}
+        共 {{ count }} 条信息
+    </p>
+</div>
+<div id="you">
+    <table>
+        {% if type_name == '未被抢单' %}
+            <tr id="tr01" style="background: #27A9E3;font-weight: 700">
+                <td id="t01">商品名称</td>
+                <td id="t02">发布分区</td>
+                <td id="t03">发布价格</td>
+                <td id="t04">联系电话</td>
+                <td id="t05">商品简介</td>
+                <td id="t06">发布时间</td>
+                <td id="t07">删除操作</td>
+            </tr>
+            {% for item in list %}
+                <tr id="tr01">
+                    <td id="t01">{{ item.name }}</td>
+                    <td id="t02">
+                        {% if item.type == 'ershoushichang' %}
+                            二手市场
+                        {% elif item.type == 'jiaohuanzhongxin' %}
+                            交换中心
+                        {% else %}
+                            打工地带
+                        {% endif %}
+                    </td>
+                    <td id="t03">{{ item.price }}</td>
+                    <td id="t04">{{ item.tel }}</td>
+                    <td id="t05">{{ item.remarks }}</td>
+                    <td id="t06">{{ item.time }}</td>
+                    <td id="t07"><a href="/delete.html?id={{ item.id }}" id="sc">删除</a></td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+
+        {% if type_name == '已被抢单' %}
+            <tr id="tr01" style="background: #27A9E3;font-weight: 700">
+                <td id="t01">商品名称</td>
+                <td id="t02">发布分区</td>
+                <td id="t03">发布价格</td>
+                <td id="t04">联系电话</td>
+                <td id="t05">商品简介</td>
+                <td id="t06">发布时间</td>
+                <td id="t08">抢单人员</td>
+                <td id="t07">撤销此单</td>
+                <td id="t09">完成交易</td>
+            </tr>
+            {% for item in list %}
+                <tr id="tr01">
+                    <td id="t01">{{ item.name }}</td>
+                    <td id="t02">
+                        {% if item.type == 'ershoushichang' %}二手市场{% elif item.type == 'jiaohuanzhongxin' %}
+                            交换中心{% else %}打工地带{% endif %}
+                    </td>
+                    <td id="t03">￥ {{ item.price }}</td>
+                    <td id="t04">{{ item.tel }}</td>
+                    <td id="t05">{{ item.remarks }}</td>
+                    <td id="t06">{{ item.time }}</td>
+                    <td id="t06">{{ item.state }}</td>
+                    <td id="t07"><a href="/revoke.html?id={{ item.id }}&qname={{ item.state }}&upname={{ name }}&type=0"
+                                    id="sc">撤单</a></td>
+                    {% if item.result == '1' %}
+                        <td id="t07"><a href="/ok.html?id={{ item.id }}&qname={{ item.state }}&upname={{ name }}&type=3"
+                                        id="sc">取消</a></td>
+                    {% else %}
+                        <td id="t07"><a href="/ok.html?id={{ item.id }}&qname={{ item.state }}&upname={{ name }}&type=0"
+                                        id="sc">完成</a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        {% endif %}
+
+
+        {% if type_name == '尚未处理' %}
+            <tr id="tr01" style="background: #27A9E3;font-weight: 700">
+                <td id="t01">商品名称</td>
+                <td id="t02">发布分区</td>
+                <td id="t03">发布价格</td>
+                <td id="t04">联系电话</td>
+                <td id="t05">商品简介</td>
+                <td id="t06">发布时间</td>
+                <td id="t08">发布人员</td>
+                <td id="t07">撤销此单</td>
+                <td id="t09">完成交易</td>
+            </tr>
+            {% for item in list %}
+                <tr id="tr01">
+                    <td id="t01">{{ item.name }}</td>
+                    <td id="t02">
+                        {% if item.type == 'ershoushichang' %}二手市场{% elif item.type == 'jiaohuanzhongxin' %}
+                            交换中心{% else %}打工地带{% endif %}
+                    </td>
+                    <td id="t03">{{ item.price }}</td>
+                    <td id="t04">{{ item.tel }}</td>
+                    <td id="t05">{{ item.remarks }}</td>
+                    <td id="t06">{{ item.time }}</td>
+                    <td id="t06">{{ item.upname }}</td>
+                    <td id="t07"><a
+                            href="/revoke.html?id={{ item.id }}&qname={{ name }}&upname={{ item.upname }}&type=1"
+                            id="sc">撤单</a></td>
+                    {% if item.result2 == '1' %}
+                        <td id="t07"><a
+                                href="/ok.html?id={{ item.id }}&qname={{ name }}&upname={{ item.upname }}&type=4"
+                                id="sc">取消</a></td>
+                    {% else %}
+                        <td id="t07"><a
+                                href="/ok.html?id={{ item.id }}&qname={{ name }}&upname={{ item.upname }}&type=1"
+                                id="sc">完成</a></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        {% endif %}
+
+        {% if type_name == '完成交易' %}
+            <tr id="tr01" style="background: #27A9E3;font-weight: 700">
+                <td id="t01">商品名称</td>
+                <td id="t02">发布分区</td>
+                <td id="t03">发布价格</td>
+                <td id="t04">联系电话</td>
+                <td id="t05">商品简介</td>
+                <td id="t06">发布时间</td>
+                <td id="t08">发布人员</td>
+            </tr>
+            {% for item in list %}
+                <tr id="tr01">
+                    <td id="t01">{{ item.name }}</td>
+                    <td id="t02">
+                        {% if item.type == 'ershoushichang' %}二手市场{% elif item.type == 'jiaohuanzhongxin' %}
+                            交换中心{% else %}打工地带{% endif %}
+                    </td>
+                    <td id="t03">{{ item.price }}</td>
+                    <td id="t04">{{ item.tel }}</td>
+                    <td id="t05">{{ item.remarks }}</td>
+                    <td id="t06">{{ item.time }}</td>
+                    <td id="t06">{{ item.upname }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+
+        {% if type_name == '商业街购物账单' %}
+            <tr id="tr01" style="background: #27A9E3;font-weight: 700">
+                <td><span>店铺名称</span></td>
+                <td><span>商品名称</span></td>
+                <td><span>商品数量</span></td>
+                <td><span>商品总价</span></td>
+                <td><span>下单时间</span></td>
+                <td><span>下单操作</span></td>
+                <td><span>交易状态</span></td>
+            </tr>
+            {% for foo in list %}
+                <tr id="tr01">
+                    <td>{{ foo.shoppingShops__ShopsName }}</td>
+                    <td>{{ foo.shoppingName }}</td>
+                    <td>{{ foo.shoppingCount }} 件</td>
+                    <td>￥ {{ foo.shoppingMoney }}</td>
+                    <td>{{ foo.shoppingTime }}</td>
+                    <td><a href="#">撤单</a></td>
+                    <td><a href="#">未送达</a></td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+
+
+        {% if type_name == '店铺订单' %}
+            <tr id="tr01" style="background: #27A9E3;font-weight: 700">
+                <td><span>我的店铺</span></td>
+                <td><span>商品名称</span></td>
+                <td><span>顾客名称</span></td>
+                <td><span>商品数量</span></td>
+                <td><span>商品总价</span></td>
+                <td><span>下单时间</span></td>
+                <td><span>接单操作</span></td>
+                <td><span>交易状态</span></td>
+            </tr>
+            {% for foo in list %}
+                <tr id="tr01">
+                    <td>{{ foo.shoppingShops__ShopsName }}</td>
+                    <td>{{ foo.shoppingName }}</td>
+                    <td>{{ foo.shoppingUser__username }}</td>
+                    <td>{{ foo.shoppingCount }} 件</td>
+                    <td>￥ {{ foo.shoppingMoney }}</td>
+                    <td>{{ foo.shoppingTime }}</td>
+                    <td><a href="#" style="color: #27A9E3">接单</a></td>
+                    <td><a href="#" style="color: #27A9E3">未送达</a></td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+
+
+    </table>
+</div>
+</body>
+</html>
