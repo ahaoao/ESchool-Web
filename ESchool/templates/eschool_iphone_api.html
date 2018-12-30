@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ESchool开发者-移动端API接口</title>
+    <link href="../static/css/api.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="title">
+    <p id="sname"><a href="/index.html/">ESchool 大学生校园交易平台 开发者中心</a> —— 移动端API接口</p>
+    <p id="name">欢迎光临ESchool</p>
+</div>
+
+<div id="d1">
+    <h1>ESchool 大学生交易平台 移动端API接口-通信协议</h1>
+</div>
+
+<div id="t1">
+    <h2>用户登录：</h2>
+    <p class="pp">访问API接口：iphone_api/login.html</p>
+    <p class="pp">数据请求方式：POST</p>
+    <p class="pp">返回数据格式：[{'username':'wjw','state':'1','remarks':''}]</p>
+    <p class="pp">Username：返回登录使用的用户名;State：返回登录状态（0：失败；1：成功0）;Remarks：备注信息。</p>
+    <p class="pp">请求参数：uid：用户名； pwd：密码</p>
+</div>
+
+<div id="t1">
+    <h2>用户注册：</h2>
+    <p class="pp">访问API接口：iphone_api/sign.html</p>
+    <p class="pp">数据请求方式：POST</p>
+    <p class="pp">返回数据格式：{'username':'wjw','state':'0','remarks':'此用户已被注册'}</p>
+    <p class="pp">Username：返回登录使用的用户名;State：返回登录状态（0：失败；1：成功0）;Remarks：备注信息。</p>
+    <p class="pp">请求参数：uid：用户名； pwd：密码</p>
+</div>
+
+<div id="t1">
+    <h2>获取各板块(二手市场、打工地带、交换中心)数据：</h2>
+    <p class="pp">访问API接口：iphone_api/get_news.html</p>
+    <p class="pp">数据请求方式：GET</p>
+    <p class="pp">返回数据格式：{'username':'wjw','max_page':'1','data':'[{"model": "app01.sale", "pk": 2, "fields": {"name":
+        "\u7535\u8111\u684c", "upname": "wangjiawei", "type": "ershoushichang", "state": "", "img": "user1.jpg",
+        "price": "120", "tel": "12542365559", "remarks":
+        "\u5e8a\u4e0a\u7535\u8111\u684c\uff0c\u84dd\u8272\u70ab\u9177\uff0c\u9001\u9f20\u6807\u57ab\uff0c\u559c\u6b22\u79c1\u804a",
+        "time": "2018-04-21 15:50:08", "result": "", "result2": "", "user": [1]}}, {"model": "app01.sale", "pk": 1,
+        "fields": {"name": "\u9f20\u6807\u57ab", "upname": "wangjiawei", "type": "ershoushichang", "state": "", "img":
+        "user1.jpg", "price": "20", "tel": "1566832515", "remarks": "\u65b0\u6b3e\u9f20\u6807\u57ab", "time":
+        "2018-04-21 15:49:30", "result": "", "result2": "", "user": [1]}}]'}</p>
+    <p class="pp">Username：返回登录使用的用户名; Max_page：数据的最大页数; Data：返回的数据 </p>
+    <p class="pp">请求参数：name：用户名； type： 请求数据类别（ershoushichang：二手市场，jiaohuanzhongxin：交换中心，dagongdidai：打工地带）</p>
+    <p class="pp">请求案例：http://IP地址:端口/iphone_api/get_news.html?username=wjw&type=ershoushichang&page=1</p>
+</div>
+
+
+<div id="t1">
+    <h2>发布帖子：</h2>
+    <p class="pp">访问API接口：iphone_api/up_news.html</p>
+    <p class="pp">数据请求方式：POST</p>
+    <p class="pp">返回数据格式：{'username':'%s','state':'1','remarks':''}</p>
+    <p class="pp">Username：返回登录使用的用户名;State：返回登录状态（0：失败；1：成功0）;Remarks：备注信息。</p>
+    <p class="pp">请求参数：username: 用户名；name ：商品名；type: 发布分区（ershoushichang、jiaohuanzhongxin、dagongdidai）；tel：联系电话（字符串）；price ：价格（整型）；remark ： 商品介绍（最多五十字）</p>
+</div>
+
+
+</body>
+</html>

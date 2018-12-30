@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ESchool 商铺管理</title>
+    {% load staticfiles %}
+    <link rel="shortcut icon" href="{% static "favicon.ico" %}"/>
+    <link href="../static/css/Shop_management.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="title">
+    <p id="sname"><a href="/index.html/">ESchool 大学生校园交易平台</a> —— 商业街</p>
+    <p id="dian"><a href="/eschool_shop.html?type=i&name={{ username }}">返回店铺</a></p>
+    <p id="name"><a href="/personal_center.html/">{{ username }}</a> 上帝,欢迎光临！ &nbsp;&nbsp;&nbsp; <a
+            href="/tuichu.html/">[退出]</a></p>
+</div>
+
+<div id="shopname">
+    <p id="es">ESchool 大学生校园交易平台——商业街店铺管理</p>
+    <p id="sn">{{ sname }}</p>
+    <p id="jj">©2018 ESchool 王佳伟</p>
+</div>
+
+<div id="shangpin">
+    {% for item in list %}
+        <div id="ww">
+            <form method="post" action="/updat_shopping.html/">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ item.id }}">
+                <p id="pname">商品名称：<input required id="xx" name="spmc" value="{{ item.commodityName }}" type="text"
+                                          placeholder="请输入新商品名称(最多12字,必填)" maxlength="12">
+                </p>
+                <p id="pname">商品介绍：<input required id="xx" name="spjs" value="{{ item.commodityIntroduce }}" type="text"
+                                          placeholder="请输入新商品介绍(最多50字,必填)" maxlength="50">
+                </p>
+                <p id="pname">补货数量：<input required id="xx" name="spsl" value="0" type="number"
+                                          placeholder="请输入新商品数量(正整数值,不能含小数,必填)" min="0">
+                </p>
+                <p id="pname">商品价格：<input required id="xx" name="spjg" value="{{ item.commodityPrice }}" type="number"
+                                          placeholder="请输入新商品价格(正数值,最多保留一位小数,单位:元,必填)"
+                                          min="0"
+                                          step="0.1"></p>
+                <p id="l"><input id="ll" type="submit" value="确认修改"></p>
+            </form>
+        </div>
+    {% endfor %}
+
+
+</div>
+
+<div id="qqq"></div>
+
+<div id="dii">
+    <form method="post" action="/add_shopping.html/">
+        {% csrf_token %}
+        <input type="hidden" name="id" value="{{ id }}">
+        <p id="pnames">商品名称：<input required id="xx" name="spmc" type="text" placeholder="商品名称(最多12字,必填)"
+                                  maxlength="12"></p>
+        <p id="pnames">商品介绍：<input required id="xx" name="spjs" type="text" placeholder="商品介绍(最多50字,必填)"
+                                  maxlength="50"></p>
+        <p id="pnames">商品数量：<input required id="xx" name="spsl" type="number" placeholder="库存(正整数值,必填)"
+                                  min="0"></p>
+        <p id="pnames">商品价格：<input required id="xx" name="spjg" type="number"
+                                  placeholder="价格(最多保留一位小数,单位:元,必填)" min="0"
+                                  step="0.1"></p>
+        <p id="ook"><input id="llll" type="submit" value="添加商品"></p>
+        <div id="aaa"></div>
+    </form>
+</div>
+
+</body>
+</html>

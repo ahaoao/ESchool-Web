@@ -1,0 +1,110 @@
+* {
+    margin: 0;
+}
+
+#title {
+    height: 25px;
+    min-width: 1000px;
+    background: #27A9E3;
+}
+
+#sname {
+    display: inline-block;
+    float: left;
+    line-height: 25px;
+    height: 25px;
+    color: white;
+    font-weight: 700;
+    margin-left: 30px;
+}
+
+#name {
+    color: white;
+    line-height: 25px;
+    height: 25px;
+    text-align: right;
+    font-size: 12px;
+    margin-right: 50px;
+}
+
+a:visited {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+#t {
+    height: 200px;
+    width: 100%;
+    min-width: 1000px;
+    background: #5bc0de;
+}
+
+#pp {
+    height: 50px;
+    font-weight: 700;
+    line-height: 50px;
+    font-size: 35px;
+    color: white;
+    padding: 30px;
+}
+
+#ll {
+    width: 40%;
+    height: 300px;
+    min-width: 600px;
+    margin-left: 30%;
+    background: white;
+    margin-top: 30px;
+    -moz-box-shadow: 2px 2px 10px #909090;
+    -webkit-box-shadow: 2px 2px 10px #909090;
+    box-shadow: 2px 2px 10px #909090;
+}
+
+#titles {
+    height: 40px;
+    line-height: 40px;
+    font-size: 25px;
+    background: #27A9E3;
+    color: white;
+    text-align: center;
+}
+
+#q{
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    text-align: center;
+    margin: 20px;
+}
+
+#in{
+    width: 200px;
+}
+
+#ty{
+    margin-top: 100px;
+    text-align: center;
+}
+
+#ma{
+    color: #27A9E3;
+}
+
+#pp2{
+    height: 50px;
+    font-weight: 600;
+    line-height: 30px;
+    font-size: 20px;
+    color: white;
+    padding-top: 25px;
+    padding-left: 300px;
+}
+
+#llll{
+    color: red;
+    font-size: 15px;
+}

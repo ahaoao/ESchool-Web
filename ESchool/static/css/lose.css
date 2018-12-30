@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+}
+
+body {
+    min-width: 1300px;
+}
+
+#sname {
+    display: inline-block;
+    float: left;
+    line-height: 25px;
+    height: 25px;
+    color: white;
+    font-weight: 700;
+    margin-left: 30px;
+}
+
+
+
+#name {
+    color: white;
+    line-height: 25px;
+    height: 25px;
+    text-align: right;
+    font-size: 12px;
+    margin-right: 50px;
+}
+
+#title {
+    left: 0px;
+    top: 0px;
+    position: fixed;
+    height: 25px;
+    width: 100%;
+    min-width: 700px;
+    background: #ff730e;
+}
+
+a:visited {
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+#head {
+    background: #DCDEE0;
+    width: 100%;
+    min-width: 1300px;
+    height: 330px;
+}
+
+#heads {
+    background: #DCDEE0;
+    width: 100%;
+    min-width: 1300px;
+    height: 330px;
+}
+
+.item {
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 15px;
+    -moz-box-shadow: 1px 1px 5px #909090;
+    -webkit-box-shadow: 1px 1px 5px #909090;
+    box-shadow: 1px 1px 5px #909090;
+}
+
+.title_content {
+    width: 100%;
+    height: 30px;
+}
+
+.title_user, .title_type, .title_what {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.title_user {
+    float: left;
+    width: 30%;
+}
+
+.title_type {
+    float: left;
+    width: 30%;
+}
+
+.title_what {
+    float: left;
+    width: 40%;
+}
+
+.content {
+    margin: 2px 10px;
+}
+
+.img_div {
+    width: 100%;
+    height: 110px;
+}
+
+.img_img {
+    margin: 5px 15px;
+    width: 80px;
+    height: 100px;
+    cursor: pointer;
+}
+
+.time {
+    color: #adadad;
+    float: right;
+    display: inline-block;
+    margin-top: 90px;
+    font-size: 12px;
+    padding-right: 20px;
+}
+
+button{
+    float: left;
+    margin: 10%;
+    width: 30%;
+    height: 25px;
+    background: #ff730e;
+    font-weight: 700;
+    color: white;
+    border: 0;
+}
+
+#itemss{
+    float: left;
+    background: #c1e2b3;
+    width: 17%;
+    margin: 15px;
+    -moz-box-shadow: 1px 1px 5px #909090;
+    -webkit-box-shadow: 1px 1px 5px #909090;
+    box-shadow: 1px 1px 5px #909090;
+}
+
+#text{
+    margin: 20px;
+    font-size: 13px;
+    color: #888888;
+}
